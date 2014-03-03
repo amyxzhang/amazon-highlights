@@ -1,0 +1,20 @@
+create table Book (
+id INT(11) unsigned not null auto_increment,
+title VARCHAR(1000) not null, 
+book_link VARCHAR(100) not null, 
+highlight_link VARCHAR(100) not null, 
+author VARCHAR(50) not null, 
+primary key(id)
+) engine=InnoDB charset=utf8;  
+alter table Book add constraint unique_link unique(book_link);
+
+create table Highlight ( 
+id INT(11) unsigned not null auto_increment,
+book_id INT(11) unsigned not null, 
+passage VARCHAR(5000), 
+text_hash CHAR(40) not null, 
+num_users INT(11), 
+primary key (id)
+) engine=InnoDB charset=utf8;  
+alter table Highlight add constraint fk_book foreign key (book_id) references Book (id);
+alter table Highlight add constraint unique_highlight unique(book_id, text_hash);
