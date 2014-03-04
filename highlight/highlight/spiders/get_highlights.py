@@ -1,6 +1,8 @@
 from scrapy.spider import Spider
 from scrapy.selector import Selector
+from scrapy.http import Request
 from highlight.items import HighlightItem
+
 
 class HighlightSpider(Spider):
     name = "highlight"
@@ -22,4 +24,8 @@ class HighlightSpider(Spider):
             item['book_link'] = highlight.xpath('div/div/div/div/div/a/@href')[0].extract()
             yield item
             
+        next_link = sel.xpath('//*[contains(concat(" ", normalize-space(@class), " "), " readingPagination ")]')
+        
+        next_link = next_link.xpath('div/a')[-1].xpath('@href').extract()[0]
+        yield Request(next_link, callback=self.parse)
         

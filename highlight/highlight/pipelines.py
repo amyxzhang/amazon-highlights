@@ -41,7 +41,7 @@ class HighlightMySQLPipeline(object):
                                 values (%s, %s, %s, %s)""", 
                                (b_id, 
                                 item['text'].encode('utf-8'),
-                                hash,
+                                text_hash,
                                 item['num'],
                                 ))
                 self.conn.commit()
