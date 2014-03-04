@@ -3,4 +3,12 @@ Scrape public highlights off of the Amazon Kindle website.
 
 Using the Scrapy framework and a MySQL backend, this tool can grab public highlights off of the Amazon Kindle website.
 
+The apt-get file is a not-comprehensive list of items needed to apt-get (I was using Ubuntu) in order for the python libraries to install.
+The fabfile is used to deploy the code to a remote server and install all requirements within a specified virtualenv.
+To get this running locally, one only needs to make sure the python requirements are installed using 'pip install -r requirements.txt' within a virtualenv (or not, your choice). The fabfile is not necessary for running locally.
+You'll need to set up a mysql server either locally or remotely and place the values of MYSQL_HOST, MYSQL_PW, MYSQL_USER, and MYSQL_NAME within a file called config.py inside the same folder as pipelines.py.
+I've provided the mysql file to show how to create the mysql tables necessary. Alternatively, you can use an ORM such as peewee.
+If you don't wish to use a mysql server, you can write everything to file using json by altering the pipeline this program uses.
+
+
 DISCLAIMER: I am writing this as a proof-of-concept. I have not run it on Amazon's Kindle website further than the 1st page for debugging purposes. Run at your own risk (may violate Amazon Kindle's TOS): https://kindle.amazon.com/conditions_of_use
