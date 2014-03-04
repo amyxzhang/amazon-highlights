@@ -1,2 +1,6 @@
 Amazon-highlights
 Scrape public highlights off of the Amazon Kindle website.
+
+Using the Scrapy framework and a MySQL backend, this tool can grab public highlights off of the Amazon Kindle website.
+
+DISCLAIMER: I am writing this as a proof-of-concept. I have not run it on Amazon's Kindle website further than the 1st page for debugging purposes. Run at your own risk (may violate Amazon Kindle's TOS): https://kindle.amazon.com/conditions_of_use

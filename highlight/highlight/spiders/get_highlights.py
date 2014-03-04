@@ -12,8 +12,6 @@ class HighlightSpider(Spider):
     def parse(self, response):
         sel = Selector(response)
         highlights = sel.xpath('//*[contains(concat(" ", normalize-space(@class), " "), " listRow ")]')
-        items = []
-        
         for highlight in highlights:
             item = HighlightItem()
             item['text'] = highlight.xpath('div/div/div/div')[0].xpath('span/text()').extract()[0]
@@ -22,5 +20,6 @@ class HighlightSpider(Spider):
             item['highlight_link'] = highlight.xpath('div/div/div/div')[2].xpath('span/a/@href').extract()[0]
             item['author'] = highlight.xpath('div/div/div/div')[2].xpath('span')[1].xpath('text()').extract()[0][4:]
             item['book_link'] = highlight.xpath('div/div/div/div/div/a/@href')[0].extract()
-            items.append(item)
-        return items
+            yield item
+            
+        
